@@ -10,6 +10,6 @@ app.enable("trust proxy");
 
 
 ViteExpress.listen(app, 5173, () => {
-    console.info("Server is listening on port 4100");
+    console.info("Server is listening on port 5173");
 });
 
