@@ -1,9 +1,9 @@
 # Pulpoar SkinGPT Integration Example
 
-This example demonstrates how to integrate Skingpt into your application with using our plugin sdk's.
+This example demonstrates how to integrate SkinGPT into your application using our plugin SDKs.
 
 ## Using iframe
-Using Iframe creates an isolated widget above the app. Adding the widget starting button, handling the state and alignment should be handled in users side.
+Using an iframe creates an isolated widget above the app. Adding the widget's starting button, handling its state, and managing alignment should be handled on the user's side.
 
 ```js
 <iframe
@@ -18,7 +18,7 @@ Using Iframe creates an isolated widget above the app. Adding the widget startin
 />
 ```
 ### Working With SDK
-SDK is a JavaScript library that allows you to communicate with pulpoar plugins running in an iframe.
+The SDK is a JavaScript library that allows you to communicate with PulpoAR plugins running in an iframe.
 
 ```js
 
