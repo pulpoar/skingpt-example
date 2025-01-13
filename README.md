@@ -1,50 +1,59 @@
-# React + TypeScript + Vite
+# Pulpoar SkinGPT Integration Example
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This example demonstrates how to integrate Skingpt into your application with using our plugin sdk's.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
+## Using iframe
+Using Iframe creates an isolated widget above the app. Adding the widget starting button, handling the state and alignment should be handled in users side.
 
 ```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+<iframe
+    src="https://skingpt.pulpoar.com"
+    style={{
+        width: '100%',
+        height: '100%',
+        border: 'none',
+    }}
+    title="SkinGPT"
+    allow="clipboard-write; clipboard-read; fullscreen; camera *; encrypted-media;"
+/>
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Working With SDK
+SDK is a JavaScript library that allows you to communicate with pulpoar plugins running in an iframe.
 
 ```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+import pulpoar from 'https://cdn.jsdelivr.net/npm/@pulpoar/plugin-sdk@latest';
+
+pulpoar.onReady(() => {
+    console.log('PulpoAR ready');
+});
+
+pulpoar.onSomethingChange((payload) => {
+    console.log(payload);
+});
+pulpoar.onClose(() => {
+    console.log("Close Button Triggered")
+});
+pulpoar.onHide(() => {
+    console.log("Hide Button Triggered")
+});
+
+
 ```
+
+
+
+### Component Events
+
+
+| Event              | Payload                                                                                           | Description                                                         |
+|--------------------|---------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `onError`          | Error                                                                                             | Callback function triggered when an error occurs.                   |
+| `onReady`          | Project data	                                                                                     | Callback function triggered when the PulpoAR plugin is ready.       |
+| `onClose`          | undefined	                                                                                    | Callback function triggered when the close button is triggered.     |
+| `onHide`           | undefined	                                                                                    | Callback function triggered when the hide button is clicked.        |
+| `onAddToCart`      | Variant Array	                                                                                    | Callback function triggered when the Add to Cart button is clicked. |
+| `onVariantSelect`  | Variant                                                                                           | Callback function triggered when a variant is selected.             |
+| `onGdprApprove`    | {approved:boolean}                                                                                | Callback function triggered when the GDPR checkbox is clicked.      |
+| `onTakePhotoAgain` | undefined                                                                                         | Callback function triggered when the Take Again button is clicked.  |
+| `onUsePhoto`       | undefined                                                                                         | Callback function triggered when the Use Photo button is clicked.   |

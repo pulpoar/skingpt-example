@@ -55,7 +55,8 @@ function App() {
                 }}
             >
                 PulpoAR SkinAI Assistant Demo
-            </div>            <div
+            </div>
+            <div
                 onClick={toggleChat}
                 style={{
                     position: 'fixed',
