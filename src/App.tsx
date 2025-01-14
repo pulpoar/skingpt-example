@@ -34,7 +34,6 @@ function App() {
     }, []);
     const toggleChat = () => {
         setIsHidden(false)
-
         setIsOpen(true);
     };
 
