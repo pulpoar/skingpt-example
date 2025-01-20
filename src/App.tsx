@@ -36,7 +36,27 @@ function App() {
         setIsHidden(false)
         setIsOpen(true);
     };
+    useEffect(() => {
+        const adjustHeight = () => {
+            if (window.visualViewport) {
+                // Get the visual viewport height
+                const viewportHeight = window.visualViewport.height;
+                // Set it as a CSS variable
+                document.documentElement.style.setProperty('--chat-height', `${viewportHeight}px`);
+            }
+        };
 
+        // Initial adjustment
+        adjustHeight();
+
+        // Listen for changes in the visual viewport
+        window.visualViewport.addEventListener('resize', adjustHeight);
+
+        // Cleanup on unmount
+        return () => {
+            window.visualViewport.removeEventListener('resize', adjustHeight);
+        };
+    }, []);
     const isMobile = window.innerWidth <= 768; // Check if the device is mobile
 
     return (
@@ -85,7 +105,7 @@ function App() {
                         bottom: isMobile ? 0 : '80px',
                         right: isMobile ? 0 : '20px',
                         width: isMobile ? '100%' : '400px',
-                        height: isMobile ? '100%' : '600px',
+                        height: isMobile ? 'var(--chat-height, 100vh)' : '600px', // Use the visual viewport height
                         backgroundColor: 'white',
                         boxShadow: isMobile ? 'none' : '0 4px 6px rgba(0, 0, 0, 0.1)',
                         borderRadius: isMobile ? '0' : '10px',
