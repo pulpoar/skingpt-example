@@ -13,14 +13,17 @@ function App() {
 
         script.onload = () => {
             if (window.pulpoar) {
-                window.pulpoar.onReady((payload) => {
-                    console.log("ready", payload);
+                window.pulpoar.onReady(() => {
+                    console.log("Ready");
                 });
                 window.pulpoar.onClose(() => {
                     setIsOpen(false)
                 });
                 window.pulpoar.onHide(() => {
                     setIsHidden(true)
+                });
+                window.pulpoar.onAddToCart((payload) => {
+                    console.log("Add to cart payload:", payload);
                 });
             }
         };

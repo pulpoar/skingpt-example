@@ -94,12 +94,14 @@ pulpoar.onReady(() => {
     console.log('PulpoAR ready');
 });
 
-pulpoar.onSomethingChange((payload) => {
+pulpoar.onAddToCart((payload) => {
     console.log(payload);
 });
+
 pulpoar.onClose(() => {
     console.log("Close Button Triggered")
 });
+
 pulpoar.onHide(() => {
     console.log("Hide Button Triggered")
 });
@@ -115,10 +117,10 @@ pulpoar.onHide(() => {
 | Event              | Payload                                                                                           | Description                                                         |
 |--------------------|---------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
 | `onError`          | Error                                                                                             | Callback function triggered when an error occurs.                   |
-| `onReady`          | Project data	                                                                                     | Callback function triggered when the PulpoAR plugin is ready.       |
+| `onReady`          | undefined	                                                                                     | Callback function triggered when the PulpoAR plugin is ready.       |
 | `onClose`          | undefined	                                                                                    | Callback function triggered when the close button is triggered.     |
 | `onHide`           | undefined	                                                                                    | Callback function triggered when the hide button is clicked.        |
-| `onAddToCart`      | Variant Array	                                                                                    | Callback function triggered when the Add to Cart button is clicked. |
+| `onAddToCart`      | Product Object {id, name, image, url}	                                                            | Callback function triggered when the Add to Cart button is clicked. |
 | `onVariantSelect`  | Variant                                                                                           | Callback function triggered when a variant is selected.             |
 | `onGdprApprove`    | {approved:boolean}                                                                                | Callback function triggered when the GDPR checkbox is clicked.      |
 | `onTakePhotoAgain` | undefined                                                                                         | Callback function triggered when the Take Again button is clicked.  |
