@@ -120,8 +120,10 @@ pulpoar.onHide(() => {
 | `onReady`          | undefined	                                                                                     | Callback function triggered when the PulpoAR plugin is ready.       |
 | `onClose`          | undefined	                                                                                    | Callback function triggered when the close button is triggered.     |
 | `onHide`           | undefined	                                                                                    | Callback function triggered when the hide button is clicked.        |
-| `onAddToCart`      | Product Object {id, name, image, url}	                                                            | Callback function triggered when the Add to Cart button is clicked. |
+| `onAddToCart`      | { id: number, name: string, image: string, url: string }	                                            | Callback function triggered when the Add to Cart button is clicked. |
+| `onGoToProduct`    | { id: number, name: string, url: string }	                                                            | Callback function triggered when navigating to a product page.      |
 | `onVariantSelect`  | Variant                                                                                           | Callback function triggered when a variant is selected.             |
-| `onGdprApprove`    | {approved:boolean}                                                                                | Callback function triggered when the GDPR checkbox is clicked.      |
+| `onGdprApprove`    | undefined                                                                               | Callback function triggered when the GDPR checkbox is selected and consent given.      |
 | `onTakePhotoAgain` | undefined                                                                                         | Callback function triggered when the Take Again button is clicked.  |
 | `onUsePhoto`       | undefined                                                                                         | Callback function triggered when the Use Photo button is clicked.   |
+| `onProductRecommendations` | { products: [{ id: number, name: string, url: string, image: string }], profile: { ageId: number, language: string, skinTypeId: number, skinConcernIds: number[], targetedRoutineId: number } } | Callback function triggered when AI-generated product recommendations are received and displayed to the user. |
